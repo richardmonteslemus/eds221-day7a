@@ -26,11 +26,32 @@ penguins_data <- penguins %>%
 
 penguins_adelie <- penguins %>%
   filter(species == "Adelie") %>%
-  na.omit(flipper_length_mm) %>%
+  na.omit() %>%
   group_by(sex) %>%
   summarise(flipper_length_mean = mean(flipper_length_mm),
             standard_dev = sd(flipper_length_mm),
             sample_size = n() )
 
+# Practice with joins
+animals <- data.frame(
+  stringsAsFactors = FALSE,
+          location = c("lagoon", "bluff", "creek", "oaks", "bluff"),
+           species = c("bobcat", "coyote", "fox", "squirrel", "bobcat"),
+          maturity = c("adult", "juvenile", "adult", "juvenile", "adult")
+)
 
 
+sites <- data.frame(
+  stringsAsFactors = FALSE,
+          location = c("beach", "lagoon", "bluff", "oaks"),
+    full_site_name = c("Goleta Beach","UCSB Lagoon",
+                       "Ellwood Mesa","Fremont Campground"),
+      jurisdiction = c("SB City", "UCSB", "SB City", "USFS")
+)
+
+# Practice with full_join
+# keeps all rows and adds all columns
+full_join(animals, sites)
+
+# Practice with left_join
+left_join(animals, sites)
