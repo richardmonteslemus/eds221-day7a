@@ -13,7 +13,7 @@ library(palmerpenguins)
 # 4. Rename the island variable to location
 
 penguins_data <- penguins %>%
-  filter(island == c("Biscoe", "Dream")) %>% # %in% is also good to use because even when they arent equal length we can filter
+  filter(island %in% c("Biscoe", "Dream")) %>% # %in% is also good to use because even when they arent equal length we can filter
   select(-c(year, sex)) %>%
   mutate(body_mass_kg = body_mass_g/1000) %>%
   rename(location = island)
